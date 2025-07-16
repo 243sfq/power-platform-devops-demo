@@ -8,7 +8,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout repo
+    - name: Checkout code
       uses: actions/checkout@v3
 
     - name: Install PAC CLI manually
@@ -18,8 +18,9 @@ jobs:
         echo "$env:USERPROFILE\tools\pac" | Out-File -FilePath $env:GITHUB_PATH -Append
       shell: pwsh
 
-    - name: Authenticate with Dev
+    - name: Authenticate to Dev
       run: |
+        pac auth clear
         pac auth create `
           --applicationId "${{ secrets.CLIENT_ID }}" `
           --clientSecret "${{ secrets.CLIENT_SECRET }}" `
@@ -36,8 +37,9 @@ jobs:
           --environment "${{ secrets.DEV_ENV_URL }}"
       shell: pwsh
 
-    - name: Authenticate with Staging
+    - name: Authenticate to Staging
       run: |
+        pac auth clear
         pac auth create `
           --applicationId "${{ secrets.CLIENT_ID }}" `
           --clientSecret "${{ secrets.CLIENT_SECRET }}" `
