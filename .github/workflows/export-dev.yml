@@ -13,4 +13,15 @@ jobs:
       shell: powershell
       run: |
         $msiPath = "$env:TEMP\pac.msi"
-        Invoke-WebRequest -Uri "https://
+        Invoke-WebRequest -Uri 'https://aka.ms/PowerAppsCLISetup' -OutFile $msiPath
+        Start-Process -FilePath "msiexec.exe" -ArgumentList "/i `"$msiPath`" /quiet /norestart" -Wait
+
+    - name: Authenticate to Dev
+      shell: powershell
+      run: |
+        $pac = "$env:LOCALAPPDATA\Microsoft\PowerAppsCLI\pac\pac.exe"
+        & $pac auth create `
+          --url "${{ secrets.DEV_ENV_URL }}" `
+          --clientId "${{ secrets.CLIENT_ID }}" `
+          --clientSecret "${{ secrets.CLIENT_SECRET }}" `
+          --tenant "${{ secrets.TENANT_ID_
