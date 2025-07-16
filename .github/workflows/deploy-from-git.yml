@@ -1,0 +1,44 @@
+name: Deploy Power Platform Solution from Git
+
+on:
+  push:
+    branches: [ main ]  # Only deploy on push to main
+
+jobs:
+  deploy-to-staging:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Install PAC CLI
+      run: |
+        dotnet tool install --global Microsoft.PowerApps.CLI
+
+    - name: Pack solution
+      run: |
+        pac solution pack `
+          --folder solutions/D365LightQuotingSystem `
+          --zipfile output/D365LightQuotingSystem.zip `
+          --packagetype Unmanaged
+
+    - name: Import solution to Staging
+      env:
+        PAC_AUTH_PROFILE: 'StagingProfile'
+        CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+        TENANT_ID: ${{ secrets.TENANT_ID }}
+        ENV_URL: ${{ secrets.STAGING_ENV_URL }}
+      run: |
+        pac auth create `
+          --applicationId "$env:CLIENT_ID" `
+          --clientSecret "$env:CLIENT_SECRET" `
+          --tenant "$env:TENANT_ID" `
+          --environment "$env:ENV_URL"
+
+        pac solution import `
+          --path output/D365LightQuotingSystem.zip `
+          --environment "$env:ENV_URL" `
+          --force-overwrite `
+          --publish-changes
