@@ -11,16 +11,16 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v3
 
-    - name: Install PAC CLI via MSI
+    - name: Install PAC CLI via .NET tool
       run: |
-        Invoke-WebRequest -Uri "https://aka.ms/pac-msi" -OutFile "pacsetup.msi"
-        Start-Process msiexec.exe -Wait -ArgumentList '/I pacsetup.msi /quiet /norestart'
+        dotnet tool install --global Microsoft.PowerApps.CLI
+        echo "$env:USERPROFILE\.dotnet\tools" | Out-File -FilePath $env:GITHUB_PATH -Append
       shell: pwsh
 
     - name: Authenticate to Staging
       run: |
-        & "C:\Program Files (x86)\Microsoft Power Platform CLI\pac.exe" auth clear
-        & "C:\Program Files (x86)\Microsoft Power Platform CLI\pac.exe" auth create `
+        pac auth clear
+        pac auth create `
           --applicationId "${{ secrets.CLIENT_ID }}" `
           --clientSecret "${{ secrets.CLIENT_SECRET }}" `
           --tenant "${{ secrets.TENANT_ID }}" `
@@ -29,7 +29,7 @@ jobs:
 
     - name: Import solution to Staging
       run: |
-        & "C:\Program Files (x86)\Microsoft Power Platform CLI\pac.exe" solution import `
+        pac solution import `
           --path exported/D365LightQuotingSystem.zip `
           --environment "${{ secrets.STAGING_ENV_URL }}" `
           --force-overwrite `
