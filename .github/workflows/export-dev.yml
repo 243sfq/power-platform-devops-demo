@@ -9,15 +9,31 @@ jobs:
     steps:
 
     - name: Download and Extract PAC CLI
+      shell: powershell
       run: |
         $zipUrl = "https://aka.ms/PowerAppsCLI-Win64"
         $dest = "$env:TEMP\paccli.zip"
         $outDir = "$env:TEMP\pac"
-        Invoke-WebRequest -Uri $zipUrl -OutFile $dest
-        Expand-Archive -Path $dest -DestinationPath $outDir -Force
-      shell: powershell
+        $attempts = 0
+        do {
+          $attempts++
+          Invoke-WebRequest -Uri $zipUrl -OutFile $dest -UseBasicParsing
+          try {
+            Expand-Archive -Path $dest -DestinationPath $outDir -Force
+            $success = $true
+          } catch {
+            Write-Host "Extraction failed. Retrying... ($attempts)"
+            $success = $false
+            Start-Sleep -Seconds 3
+          }
+        } until ($success -or $attempts -ge 3)
+
+        if (-not $success) {
+          throw "PAC CLI download or extraction failed after 3 attempts"
+        }
 
     - name: Authenticate to Dev Environment
+      shell: powershell
       run: |
         $clientId = "${{ secrets.CLIENT_ID }}"
         $clientSecret = "${{ secrets.CLIENT_SECRET }}"
@@ -30,9 +46,9 @@ jobs:
           --clientSecret $clientSecret `
           --tenant $tenantId `
           --kind AAD
-      shell: powershell
 
     - name: Export solution from Dev
+      shell: powershell
       run: |
         $solution = "D365LightQuotingSystem"
         $pac = "$env:TEMP\pac\pac.exe"
@@ -41,4 +57,4 @@ jobs:
           --outputFile "solution.zip" `
           --managed false `
           --overwrite
-      shell: powershell
+
