@@ -37,6 +37,7 @@ jobs:
         $pacPath = "$env:USERPROFILE\.dotnet\tools\pac.exe"
         & $pacPath solution export `
           --name "D365LightQuotingSystem" `
-          --outputFile "solution.zip" `
+          --path "solution.zip" `
           --managed false `
           --overwrite
+
