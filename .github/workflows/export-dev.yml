@@ -1,22 +1,39 @@
-name: Deploy Power Platform Solution from Git
+name: Export from Dev and Import to Staging
 
 on:
-  push:
-    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout repo
+    - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Download and install PAC CLI manually
+    - name: Install PAC CLI manually
       run: |
         Invoke-WebRequest -Uri "https://github.com/microsoft/powerplatform-cli/releases/latest/download/pac-win-x64.zip" -OutFile "pac.zip"
         Expand-Archive -Path "pac.zip" -DestinationPath "$env:USERPROFILE\tools\pac"
         echo "$env:USERPROFILE\tools\pac" | Out-File -FilePath $env:GITHUB_PATH -Append
+      shell: pwsh
+
+    - name: Authenticate with Dev
+      run: |
+        pac auth create `
+          --applicationId "${{ secrets.CLIENT_ID }}" `
+          --clientSecret "${{ secrets.CLIENT_SECRET }}" `
+          --tenant "${{ secrets.TENANT_ID }}" `
+          --environment "${{ secrets.DEV_ENV_URL }}"
+      shell: pwsh
+
+    - name: Export solution from Dev
+      run: |
+        pac solution export `
+          --name D365LightQuotingSystem `
+          --path exported/D365LightQuotingSystem.zip `
+          --managed false `
+          --environment "${{ secrets.DEV_ENV_URL }}"
       shell: pwsh
 
     - name: Authenticate with Staging
@@ -28,18 +45,10 @@ jobs:
           --environment "${{ secrets.STAGING_ENV_URL }}"
       shell: pwsh
 
-    - name: Pack solution from Git
-      run: |
-        pac solution pack `
-          --folder "solutions/D365LightQuotingSystem" `
-          --zipfile "packed/D365LightQuotingSystem.zip" `
-          --packagetype Unmanaged
-      shell: pwsh
-
     - name: Import solution to Staging
       run: |
         pac solution import `
-          --path "packed/D365LightQuotingSystem.zip" `
+          --path exported/D365LightQuotingSystem.zip `
           --environment "${{ secrets.STAGING_ENV_URL }}" `
           --force-overwrite `
           --publish-changes
