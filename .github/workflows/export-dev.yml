@@ -1,57 +1,60 @@
-name: Dev to Staging Deployment
+name: Export Power Platform Solution from Dev
 
 on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  export-solution:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-    - name: Install PAC CLI manually
+    - name: Install PAC CLI via .NET Tool
+      shell: powershell
       run: |
-        Invoke-WebRequest -Uri "https://github.com/microsoft/powerplatform-cli/releases/download/v1.45.3/pac-win-x64.zip" -OutFile "pac.zip"
-        Expand-Archive -Path "pac.zip" -DestinationPath "$env:USERPROFILE\tools\pac"
-        echo "$env:USERPROFILE\tools\pac" | Out-File -FilePath $env:GITHUB_PATH -Append
-      shell: pwsh
-
+        dotnet tool install --global Microsoft.PowerApps.CLI.Tool
+        $env:PATH += ";$env:USERPROFILE\.dotnet\tools"
     - name: Authenticate to Dev
+      shell: powershell
       run: |
-        pac auth clear
-        pac auth create `
-          --applicationId "${{ secrets.CLIENT_ID }}" `
-          --clientSecret "${{ secrets.CLIENT_SECRET }}" `
-          --tenant "${{ secrets.TENANT_ID }}" `
-          --environment "${{ secrets.DEV_ENV_URL }}"
-      shell: pwsh
-
+        $envUrl = '${{ secrets.DEV_ENV_URL }}'
+        $appId = '${{ secrets.CLIENT_ID }}'
+        $clientSecret = '${{ secrets.CLIENT_SECRET }}'
+        $tenantId = '${{ secrets.TENANT_ID }}'
+        $pacPath = "$env:USERPROFILE\.dotnet\tools\pac.exe"
+        & $pacPath auth create `
+          --applicationId $appId `
+          --clientSecret $clientSecret `
+          --tenant $tenantId `
+          --environment $envUrl
     - name: Export solution from Dev
+      shell: powershell
       run: |
-        pac solution export `
-          --name D365LightQuotingSystem `
-          --path exported/D365LightQuotingSystem.zip `
+        $pacPath = "$env:USERPROFILE\.dotnet\tools\pac.exe"
+        & $pacPath solution export `
+          --name "D365LightQuotingSystem" `
+          --path "solution.zip" `
           --managed false `
-          --environment "${{ secrets.DEV_ENV_URL }}"
-      shell: pwsh
-
+          --overwrite
     - name: Authenticate to Staging
+      shell: powershell
       run: |
-        pac auth clear
-        pac auth create `
-          --applicationId "${{ secrets.CLIENT_ID }}" `
-          --clientSecret "${{ secrets.CLIENT_SECRET }}" `
-          --tenant "${{ secrets.TENANT_ID }}" `
-          --environment "${{ secrets.STAGING_ENV_URL }}"
-      shell: pwsh
-
-    - name: Import solution to Staging
+        $envUrl = '${{ secrets.STAGING_ENV_URL }}'
+        $appId = '${{ secrets.CLIENT_ID }}'
+        $clientSecret = '${{ secrets.CLIENT_SECRET }}'
+        $tenantId = '${{ secrets.TENANT_ID }}'
+        $pacPath = "$env:USERPROFILE\.dotnet\tools\pac.exe"
+        & $pacPath auth create `
+          --applicationId $appId `
+          --clientSecret $clientSecret `
+          --tenant $tenantId `
+          --environment $envUrl
+    - name: Import solution into Staging
+      shell: powershell
       run: |
-        pac solution import `
-          --path exported/D365LightQuotingSystem.zip `
-          --environment "${{ secrets.STAGING_ENV_URL }}" `
+        $pacPath = "$env:USERPROFILE\.dotnet\tools\pac.exe"
+        & $pacPath solution import `
+          --path "solution.zip" `
           --force-overwrite `
           --publish-changes
-      shell: pwsh
