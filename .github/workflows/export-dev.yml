@@ -6,15 +6,15 @@ on:
 jobs:
   export-solution:
     runs-on: windows-latest
+
     steps:
     - uses: actions/checkout@v3
 
-    - name: Download and Install PAC CLI (MSI)
+    - name: Install PAC CLI via .NET Tool
       shell: powershell
       run: |
-        $msiPath = "$env:TEMP\pac.msi"
-        Invoke-WebRequest -Uri 'https://aka.ms/PowerAppsCLISetup' -OutFile $msiPath
-        Start-Process -FilePath "msiexec.exe" -ArgumentList "/i `"$msiPath`" /quiet /norestart" -Wait
+        dotnet tool install --global Microsoft.PowerApps.CLI.Tool
+        $env:PATH += ";$env:USERPROFILE\.dotnet\tools"
 
     - name: Authenticate to Dev
       shell: powershell
@@ -23,8 +23,8 @@ jobs:
         $clientId = '${{ secrets.CLIENT_ID }}'
         $clientSecret = '${{ secrets.CLIENT_SECRET }}'
         $tenantId = '${{ secrets.TENANT_ID }}'
-        $pac = "$env:LOCALAPPDATA\Microsoft\PowerAppsCLI\pac\pac.exe"
-        & $pac auth create `
+        $pacPath = "$env:USERPROFILE\.dotnet\tools\pac.exe"
+        & $pacPath auth create `
           --url $envUrl `
           --clientId $clientId `
           --clientSecret $clientSecret `
@@ -34,8 +34,8 @@ jobs:
     - name: Export solution from Dev
       shell: powershell
       run: |
-        $pac = "$env:LOCALAPPDATA\Microsoft\PowerAppsCLI\pac\pac.exe"
-        & $pac solution export `
+        $pacPath = "$env:USERPROFILE\.dotnet\tools\pac.exe"
+        & $pacPath solution export `
           --name "D365LightQuotingSystem" `
           --outputFile "solution.zip" `
           --managed false `
