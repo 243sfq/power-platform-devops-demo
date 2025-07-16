@@ -2,43 +2,45 @@ name: Deploy Power Platform Solution from Git
 
 on:
   push:
-    branches: [ main ]  # Only deploy on push to main
+    branches: [ main ]
 
 jobs:
-  deploy-to-staging:
+  deploy:
     runs-on: windows-latest
 
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
 
-    - name: Install PAC CLI
+    - name: Download and install PAC CLI manually
       run: |
-        dotnet tool install --global Microsoft.PowerApps.CLI
+        Invoke-WebRequest -Uri "https://github.com/microsoft/powerplatform-cli/releases/latest/download/pac-win-x64.zip" -OutFile "pac.zip"
+        Expand-Archive -Path "pac.zip" -DestinationPath "$env:USERPROFILE\tools\pac"
+        echo "$env:USERPROFILE\tools\pac" | Out-File -FilePath $env:GITHUB_PATH -Append
+      shell: pwsh
 
-    - name: Pack solution
-      run: |
-        pac solution pack `
-          --folder solutions/D365LightQuotingSystem `
-          --zipfile output/D365LightQuotingSystem.zip `
-          --packagetype Unmanaged
-
-    - name: Import solution to Staging
-      env:
-        PAC_AUTH_PROFILE: 'StagingProfile'
-        CLIENT_ID: ${{ secrets.CLIENT_ID }}
-        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-        TENANT_ID: ${{ secrets.TENANT_ID }}
-        ENV_URL: ${{ secrets.STAGING_ENV_URL }}
+    - name: Authenticate with Staging
       run: |
         pac auth create `
-          --applicationId "$env:CLIENT_ID" `
-          --clientSecret "$env:CLIENT_SECRET" `
-          --tenant "$env:TENANT_ID" `
-          --environment "$env:ENV_URL"
+          --applicationId "${{ secrets.CLIENT_ID }}" `
+          --clientSecret "${{ secrets.CLIENT_SECRET }}" `
+          --tenant "${{ secrets.TENANT_ID }}" `
+          --environment "${{ secrets.STAGING_ENV_URL }}"
+      shell: pwsh
 
+    - name: Pack solution from Git
+      run: |
+        pac solution pack `
+          --folder "solutions/D365LightQuotingSystem" `
+          --zipfile "packed/D365LightQuotingSystem.zip" `
+          --packagetype Unmanaged
+      shell: pwsh
+
+    - name: Import solution to Staging
+      run: |
         pac solution import `
-          --path output/D365LightQuotingSystem.zip `
-          --environment "$env:ENV_URL" `
+          --path "packed/D365LightQuotingSystem.zip" `
+          --environment "${{ secrets.STAGING_ENV_URL }}" `
           --force-overwrite `
           --publish-changes
+      shell: pwsh
