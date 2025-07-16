@@ -61,7 +61,8 @@ jobs:
         $pacPath = "$env:USERPROFILE\.dotnet\tools\pac.exe"
         & $pacPath solution import `
           --path "solution.zip" `
-          --overwrite `
-          --publishChanges
+          --force-overwrite `
+          --publish-changes
+
 
 
