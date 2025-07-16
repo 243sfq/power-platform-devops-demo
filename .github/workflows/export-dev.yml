@@ -16,8 +16,8 @@ jobs:
       uses: microsoft/powerplatform-actions/export-solution@v1
       with:
         environment-url: ${{ secrets.DEV_ENV_URL }}
-        client-id: ${{ secrets.CLIENT_ID }}
-        client-secret: ${{ secrets.CLIENT_SECRET }}
+        app-id: ${{ secrets.CLIENT_ID }}
+        password-secret: ${{ secrets.CLIENT_SECRET }}
         tenant-id: ${{ secrets.TENANT_ID }}
         solution-name: D365LightQuotingSystem
         solution-output-file: solution.zip
