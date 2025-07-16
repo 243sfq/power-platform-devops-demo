@@ -15,13 +15,12 @@ jobs:
       run: |
         Invoke-WebRequest -Uri "https://aka.ms/pac-msi" -OutFile "pacsetup.msi"
         Start-Process msiexec.exe -Wait -ArgumentList '/I pacsetup.msi /quiet /norestart'
-        echo "C:\Program Files (x86)\Microsoft Power Platform CLI" | Out-File -FilePath $env:GITHUB_PATH -Append
       shell: pwsh
 
     - name: Authenticate to Staging
       run: |
-        pac auth clear
-        pac auth create `
+        & "C:\Program Files (x86)\Microsoft Power Platform CLI\pac.exe" auth clear
+        & "C:\Program Files (x86)\Microsoft Power Platform CLI\pac.exe" auth create `
           --applicationId "${{ secrets.CLIENT_ID }}" `
           --clientSecret "${{ secrets.CLIENT_SECRET }}" `
           --tenant "${{ secrets.TENANT_ID }}" `
@@ -30,7 +29,7 @@ jobs:
 
     - name: Import solution to Staging
       run: |
-        pac solution import `
+        & "C:\Program Files (x86)\Microsoft Power Platform CLI\pac.exe" solution import `
           --path exported/D365LightQuotingSystem.zip `
           --environment "${{ secrets.STAGING_ENV_URL }}" `
           --force-overwrite `
