@@ -41,3 +41,27 @@ jobs:
           --managed false `
           --overwrite
 
+    - name: Authenticate to Staging
+      shell: powershell
+      run: |
+        $envUrl = '${{ secrets.STAGING_ENV_URL }}'
+        $appId = '${{ secrets.CLIENT_ID }}'
+        $clientSecret = '${{ secrets.CLIENT_SECRET }}'
+        $tenantId = '${{ secrets.TENANT_ID }}'
+        $pacPath = "$env:USERPROFILE\.dotnet\tools\pac.exe"
+        & $pacPath auth create `
+          --applicationId $appId `
+          --clientSecret $clientSecret `
+          --tenant $tenantId `
+          --environment $envUrl
+
+    - name: Import solution into Staging
+      shell: powershell
+      run: |
+        $pacPath = "$env:USERPROFILE\.dotnet\tools\pac.exe"
+        & $pacPath solution import `
+          --path "solution.zip" `
+          --overwrite `
+          --publishChanges
+
+
