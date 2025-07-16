@@ -13,28 +13,4 @@ jobs:
       shell: powershell
       run: |
         $msiPath = "$env:TEMP\pac.msi"
-        Invoke-WebRequest -Uri "https://aka.ms/PowerAppsCLISetup" -OutFile $msiPath
-        Start-Process msiexec.exe -Wait -ArgumentList "/i `"$msiPath`" /quiet /norestart"
-
-    - name: Authenticate to Dev
-      shell: powershell
-      run: |
-        $clientId = "${{ secrets.CLIENT_ID }}"
-        $clientSecret = "${{ secrets.CLIENT_SECRET }}"
-        $tenantId = "${{ secrets.TENANT_ID }}"
-        $envUrl = "${{ secrets.DEV_ENV_URL }}"
-        pac auth create `
-          --url $envUrl `
-          --clientId $clientId `
-          --clientSecret $clientSecret `
-          --tenant $tenantId `
-          --kind AAD
-
-    - name: Export solution from Dev
-      shell: powershell
-      run: |
-        pac solution export `
-          --name D365LightQuotingSystem `
-          --outputFile solution.zip `
-          --managed false `
-          --overwrite
+        Invoke-WebRequest -Uri "https://
