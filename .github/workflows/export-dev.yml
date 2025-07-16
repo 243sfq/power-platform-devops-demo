@@ -20,16 +20,16 @@ jobs:
       shell: powershell
       run: |
         $envUrl = '${{ secrets.DEV_ENV_URL }}'
-        $clientId = '${{ secrets.CLIENT_ID }}'
+        $appId = '${{ secrets.CLIENT_ID }}'
         $clientSecret = '${{ secrets.CLIENT_SECRET }}'
         $tenantId = '${{ secrets.TENANT_ID }}'
         $pacPath = "$env:USERPROFILE\.dotnet\tools\pac.exe"
         & $pacPath auth create `
-          --url $envUrl `
-          --clientId $clientId `
+          --applicationId $appId `
           --clientSecret $clientSecret `
           --tenant $tenantId `
-          --kind AAD
+          --environment $envUrl
+
 
     - name: Export solution from Dev
       shell: powershell
