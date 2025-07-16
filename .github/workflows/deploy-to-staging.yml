@@ -11,10 +11,11 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v3
 
-    - name: Install PAC CLI via .NET tool
+    - name: Download and unzip PAC CLI
       run: |
-        dotnet tool install --global Microsoft.PowerApps.CLI
-        echo "$env:USERPROFILE\.dotnet\tools" | Out-File -FilePath $env:GITHUB_PATH -Append
+        Invoke-WebRequest -Uri "https://github.com/microsoft/powerplatform-cli/releases/download/v1.0.28/pac-win-x64.zip" -OutFile "pac.zip"
+        Expand-Archive -Path "pac.zip" -DestinationPath "$env:RUNNER_TEMP\pac"
+        echo "$env:RUNNER_TEMP\pac" | Out-File -FilePath $env:GITHUB_PATH -Append
       shell: pwsh
 
     - name: Authenticate to Staging
