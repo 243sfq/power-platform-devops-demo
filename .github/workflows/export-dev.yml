@@ -1,4 +1,4 @@
-name: Export from Dev and Import to Staging
+name: Dev to Staging Deployment
 
 on:
   workflow_dispatch:
@@ -8,12 +8,12 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout repo
       uses: actions/checkout@v3
 
     - name: Install PAC CLI manually
       run: |
-        Invoke-WebRequest -Uri "https://github.com/microsoft/powerplatform-cli/releases/latest/download/pac-win-x64.zip" -OutFile "pac.zip"
+        Invoke-WebRequest -Uri "https://github.com/microsoft/powerplatform-cli/releases/download/v1.45.3/pac-win-x64.zip" -OutFile "pac.zip"
         Expand-Archive -Path "pac.zip" -DestinationPath "$env:USERPROFILE\tools\pac"
         echo "$env:USERPROFILE\tools\pac" | Out-File -FilePath $env:GITHUB_PATH -Append
       shell: pwsh
