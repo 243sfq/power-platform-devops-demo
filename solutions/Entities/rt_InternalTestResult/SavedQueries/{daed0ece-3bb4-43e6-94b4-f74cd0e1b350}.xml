@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{daed0ece-3bb4-43e6-94b4-f74cd0e1b350}</savedqueryid>
+    <layoutxml>
+      <grid name="rt_internaltestresults" jump="rt_testid" select="1" icon="1" preview="1">
+        <row name="rt_internaltestresult" id="rt_internaltestresultid">
+          <cell name="rt_testid" width="300" />
+          <cell name="rt_passfail" width="100" />
+          <cell name="rt_teststatus" width="101" />
+          <cell name="rt_testdate" width="100" />
+          <cell name="rt_testername" width="111" />
+          <cell name="rt_testnotes" width="100" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="rt_internaltestresult">
+          <attribute name="rt_internaltestresultid" />
+          <attribute name="rt_testid" />
+          <attribute name="createdon" />
+          <order attribute="rt_testid" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="rt_passfail" />
+          <attribute name="rt_testdate" />
+          <attribute name="rt_testername" />
+          <attribute name="rt_teststatus" />
+          <attribute name="rt_testnotes" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="InternalTestResult Associated View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

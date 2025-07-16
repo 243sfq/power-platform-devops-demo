@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{a6bb6ec3-c765-4083-a354-3b528b1de664}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{48a09e02-282c-4e40-8c08-94292efbc956}" IsUserDefined="1">
+          <labels>
+            <label description="" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{7ff006ed-9286-4223-8eeb-ea582ddd8ef9}">
+                  <labels>
+                    <label description="GENERAL" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{f50d0578-efe4-4cf4-aa09-24e0cb315235}">
+                        <labels>
+                          <label description="Test ID" languagecode="1033" />
+                        </labels>
+                        <control id="rt_testid" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="rt_testid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{fcd44f0a-8cce-43ff-9fe7-ebf6a858a3f4}" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ddd68414-e66f-41c8-b44f-7f31e214f3fd}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Pass/Fail" languagecode="1033" />
+                        </labels>
+                        <control id="rt_passfail" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="rt_passfail" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8c6a31fc-92e3-487f-bc7a-005b2d61b778}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Test Date" languagecode="1033" />
+                        </labels>
+                        <control id="rt_testdate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="rt_testdate" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{903ef08b-ae52-4928-bdea-9d3a5478d0fd}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Test Status" languagecode="1033" />
+                        </labels>
+                        <control id="rt_teststatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="rt_teststatus" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c5df2932-3325-4ebe-b43e-07c87f75e199}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Tester Name" languagecode="1033" />
+                        </labels>
+                        <control id="rt_testername" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="rt_testername" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8db5a6b2-82a4-4b45-be9d-9932a424b318}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Test Notes" languagecode="1033" />
+                        </labels>
+                        <control id="rt_testnotes" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="rt_testnotes" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+  </systemform>
+</forms>

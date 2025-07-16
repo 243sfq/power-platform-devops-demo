@@ -1,0 +1,191 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "rt_sharedcommondataserviceforapps_496ff"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "eeae8e74-3d07-4de1-8569-9166b90bc612"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "rt_internaltestresult",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "rt_teststatus"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Condition": {
+          "actions": {
+            "List_rows": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "bc722f5c-ea80-4fb0-b2c6-f7675842ff01"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "rt_internaltestresults",
+                  "$filter": "_rt_relatedquotelite_value eq @{triggerOutputs()?['body/_rt_relatedquotelite_value']}\n"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Apply_to_each": {
+              "foreach": "@outputs('List_rows')?['body/value']",
+              "actions": {
+                "Condition_2": {
+                  "actions": {},
+                  "runAfter": {},
+                  "else": {
+                    "actions": {
+                      "Set_variable": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "68370db8-09b4-4aae-8d45-f3b79452bac3"
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "AllCompleted",
+                          "value": "No"
+                        }
+                      }
+                    }
+                  },
+                  "expression": {
+                    "equals": [
+                      "@items('Apply_to_each')?['rt_teststatus']",
+                      126260001
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "f1333ea1-0c03-48bf-aa06-bf2f0fa0eb9d"
+                  },
+                  "type": "If"
+                },
+                "Condition_3": {
+                  "actions": {
+                    "Update_a_row": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "daae515f-1dc5-4840-8f84-e0e052cec6dc"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps",
+                          "operationId": "UpdateOnlyRecord",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "rt_quotelites",
+                          "recordId": "@items('Apply_to_each')?['_rt_relatedquotelite_value']",
+                          "item/rt_status": 126260007
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Condition_2": [
+                      "Succeeded"
+                    ]
+                  },
+                  "expression": {
+                    "equals": [
+                      "@variables('AllCompleted')",
+                      "Yes"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "217e11f6-e45c-4ed7-ba69-db8a5d6f937f"
+                  },
+                  "type": "If"
+                }
+              },
+              "runAfter": {
+                "List_rows": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "48e73588-87e7-4fd1-a804-4bcc16544713"
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@triggerOutputs()?['body/rt_teststatus']",
+              126260001
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5d978b64-311a-4671-ad43-92c74ed507c0"
+          },
+          "type": "If"
+        },
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "00bd1c31-caa3-4a14-9fb6-8c95de9ac135"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "AllCompleted",
+                "type": "string",
+                "value": "Yes"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

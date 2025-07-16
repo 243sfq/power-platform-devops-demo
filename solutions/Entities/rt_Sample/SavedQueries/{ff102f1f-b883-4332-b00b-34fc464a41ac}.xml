@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{ff102f1f-b883-4332-b00b-34fc464a41ac}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="rt_samplename" select="1" icon="1" preview="1">
+        <row name="result" id="rt_sampleid">
+          <cell name="rt_samplename" width="300" />
+          <cell name="rt_quotelite" width="101" />
+          <cell name="rt_currentstatus" width="121" />
+          <cell name="statecode" width="100" />
+          <cell name="statuscode" width="119" />
+          <cell name="rt_friendlysampleid" width="158" />
+          <cell name="createdon" width="125" />
+          <cell name="rt_assignedtechnician" width="157" />
+          <cell name="rt_materialtype" width="150" />
+          <cell name="rt_numberofsamples" width="150" />
+          <cell name="rt_urgency" width="150" />
+          <cell name="rt_specialhandling" width="150" />
+          <cell name="rt_receiveddate" width="150" />
+          <cell name="rt_notes" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="rt_sample">
+          <attribute name="rt_sampleid" />
+          <attribute name="rt_samplename" />
+          <attribute name="createdon" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="rt_materialtype" />
+          <attribute name="rt_numberofsamples" />
+          <attribute name="rt_urgency" />
+          <attribute name="rt_specialhandling" />
+          <attribute name="rt_receiveddate" />
+          <attribute name="rt_notes" />
+          <attribute name="rt_assignedtechnician" />
+          <attribute name="rt_currentstatus" />
+          <attribute name="statecode" />
+          <attribute name="statuscode" />
+          <attribute name="rt_friendlysampleid" />
+          <order attribute="createdon" descending="true" />
+          <attribute name="rt_quotelite" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Samples" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{a8daa581-708d-44f3-82b8-24419b492483}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{79c31374-6a19-4a27-896e-39e492086a04}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{9141b85c-2a7d-4e2e-a610-c7bca2a73b93}" columns="1" celllabelposition="Left">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{0611acb5-1b6f-40e7-804b-b0d6d0c6c48d}">
+                        <labels>
+                          <label description="Sample Name" languagecode="1033" />
+                        </labels>
+                        <control id="rt_samplename" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="rt_samplename" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7a3551f1-a54c-484a-982a-b2b555ef9182}" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Material Type" languagecode="1033" />
+                        </labels>
+                        <control id="rt_materialtype" classid="{3ef39988-22bb-4f0b-bbbe-64b5a3748aee}" datafieldname="rt_materialtype" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1417446e-7a83-4bd8-81df-7612dea477af}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Current Status" languagecode="1033" />
+                        </labels>
+                        <control id="rt_currentstatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="rt_currentstatus" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d7e0ff18-b49b-4163-ab8c-88cfa5772077}">
+                        <labels>
+                          <label description="Number of Samples" languagecode="1033" />
+                        </labels>
+                        <control id="rt_numberofsamples" classid="{c6d124ca-7eda-4a60-aea9-7fb8d318b68f}" datafieldname="rt_numberofsamples" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6dc0665f-b27b-4233-adbe-b17f70d3ee95}" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Received Date" languagecode="1033" />
+                        </labels>
+                        <control id="rt_receiveddate" classid="{5b773807-9fb2-42db-97c3-7a91eff8adff}" datafieldname="rt_receiveddate" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ce9ba123-cd98-4447-8a86-7448a778f6f1}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Assigned Technician" languagecode="1033" />
+                        </labels>
+                        <control id="rt_assignedtechnician" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="rt_assignedtechnician" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9a9cf45d-ec64-4921-a4bb-ed43c62eb9e7}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Related Quote Lite" languagecode="1033" />
+                        </labels>
+                        <control id="rt_quotelite" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="rt_quotelite" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{90497bda-0b86-41ed-af3b-6b56927677e8}">
+                        <labels>
+                          <label description="Urgency" languagecode="1033" />
+                        </labels>
+                        <control id="rt_urgency" classid="{3ef39988-22bb-4f0b-bbbe-64b5a3748aee}" datafieldname="rt_urgency" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6dbaeb13-ba15-460b-b56e-0c04035f3447}">
+                        <labels>
+                          <label description="Special Handling" languagecode="1033" />
+                        </labels>
+                        <control id="rt_specialhandling" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="rt_specialhandling" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e2114f83-9593-48ed-afdb-299d1dac0cfb}" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Notes" languagecode="1033" />
+                        </labels>
+                        <control id="rt_notes" classid="{e0dece4b-6fc8-4a8f-a065-082708572369}" datafieldname="rt_notes" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_2" id="d242f447-b3a9-4d0a-bfd2-93903d6fd8b1" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Status Changes" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_2_section_1" id="f4d01277-55d1-46dd-bc07-1525dcfc6b2d" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{b19b16e8-9d98-4fcf-9974-60d0fb24e4e3}" rowspan="4" colspan="1" auto="false">
+                        <labels>
+                          <label description="Status Change History" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>rt_samplestatuschanges_Sample_rt_sample</RelationshipName>
+                            <TargetEntityType>rt_samplestatuschanges</TargetEntityType>
+                            <ViewId>{E0BC86BE-98AA-4A53-90E7-6C5F3B635C19}</ViewId>
+                            <ViewIds>{E0BC86BE-98AA-4A53-90E7-6C5F3B635C19}</ViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_3" id="70e120f3-bca8-4209-bc4a-d74d1079309c" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Test Results" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_3_section_1" id="793626d0-49f9-4921-94ea-da475fa8f3a4" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{d38ae0f2-7226-4e4d-8fff-0647b1b012bb}" rowspan="4" colspan="1" auto="false" showlabel="true">
+                        <labels>
+                          <label description="Test Results" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_2" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>rt_internaltestresult_Sample_rt_sample</RelationshipName>
+                            <TargetEntityType>rt_internaltestresult</TargetEntityType>
+                            <ViewId>{7cffe444-4ec6-47a3-a03d-b83b6552816b}</ViewId>
+                            <ViewIds>{7cffe444-4ec6-47a3-a03d-b83b6552816b}</ViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{e85e0168-08d9-4a0f-94a5-4b7339bc4e93}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{70e3dee5-ece8-4a4c-8489-58e8c47a954c}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{f0697a82-f367-4cc3-bf8f-156285cc975a}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{d1c3179b-2c74-47c0-9282-9e3b19393897}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{45f5031d-cc6f-4efe-869c-223080cb6404}" colspan="1" rowspan="1">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{56f55b17-4d5c-4fca-810a-bf4c7febe161}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{c320f07a-6f42-4692-bdac-baad5b994fdf}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{a71e4a5d-039f-4bf9-8e2c-d2ef47ae3670}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{a82a5c95-cf0f-46fb-be86-97ca0361e1d1}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

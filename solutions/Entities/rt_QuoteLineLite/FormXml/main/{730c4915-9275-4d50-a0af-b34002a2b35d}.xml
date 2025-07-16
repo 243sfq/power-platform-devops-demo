@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{730c4915-9275-4d50-a0af-b34002a2b35d}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{afa2bd8f-1c25-4555-9332-86bfd2e112f0}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{d209da3e-4ef8-4e3c-9809-a509b6644cb2}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{20811f0f-76c1-4bad-a83f-9ce0298f126f}">
+                        <labels>
+                          <label description="Test Name" languagecode="1033" />
+                        </labels>
+                        <control id="rt_lineitemname" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="rt_lineitemname" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ad733487-acbb-4f4a-9000-7cc6fe4c5409}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Cost" languagecode="1033" />
+                        </labels>
+                        <control id="rt_linetotal" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="rt_linetotal" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{24cc4077-f877-492d-9cf9-8f68de2b6269}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Sample to Test" languagecode="1033" />
+                        </labels>
+                        <control id="rt_sampletotest" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="rt_sampletotest" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{34297c5b-88e0-4af5-8404-f8c199fc338d}">
+                        <labels>
+                          <label description="Description" languagecode="1033" />
+                        </labels>
+                        <control id="rt_description" classid="{e0dece4b-6fc8-4a8f-a065-082708572369}" datafieldname="rt_description" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{f4c5c360-ed71-44ce-8885-7e5e2503de59}" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Test Details" languagecode="1033" />
+                        </labels>
+                        <control id="QuickviewControl1745716078782" classid="{5C5600E0-1D6E-4205-A272-BE80DA87FD42}" datafieldname="rt_createdsample">
+                          <parameters>
+                            <DisplayAsCustomer360Tile>false</DisplayAsCustomer360Tile>
+                            <QuickForms>&lt;QuickFormIds&gt;&lt;QuickFormId entityname="rt_sample"&gt;db1e1b9a-0323-f011-8c4e-7c1e5265d57e&lt;/QuickFormId&gt;&lt;/QuickFormIds&gt;</QuickForms>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{816ef45a-5f7c-418b-b674-ecd843105ff5}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{d720d176-ca13-4660-997e-29cb57dd0ee1}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{276dc0b2-339c-4160-9d45-4170a8b2e9c4}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{cb50fd11-3ee1-4e67-b49e-5ea3e75bcd3b}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{e944b3c6-98ba-448b-bd1c-19d364dd1bd9}" colspan="1" rowspan="1">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{66b31e96-cf9c-4066-b1b3-b283d63a6cc9}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{16f6de18-afac-43e8-9fe9-d8ad07859c16}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{5b9e4b25-7aec-4756-97a6-5dba80222772}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{4b303672-b22f-4fe4-bd85-18aed7bd0f32}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

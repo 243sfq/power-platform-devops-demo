@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{e0bc86be-98aa-4a53-90e7-6c5f3b635c19}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="rt_samplestatuschanges1" select="1" icon="1" preview="1">
+        <row name="result" id="rt_samplestatuschangesid">
+          <cell name="rt_sample" width="216" />
+          <cell name="rt_newstatus" width="105" />
+          <cell name="rt_changedby" width="110" />
+          <cell name="createdon" width="125" />
+          <cell name="rt_changedateandtime" width="150" />
+          <cell name="rt_comments" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="rt_samplestatuschanges">
+          <attribute name="rt_samplestatuschangesid" />
+          <attribute name="createdon" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="rt_changedateandtime" />
+          <attribute name="rt_comments" />
+          <attribute name="rt_newstatus" />
+          <order attribute="createdon" descending="true" />
+          <attribute name="rt_changedby" />
+          <attribute name="rt_sample" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Sample Status Changeses" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
