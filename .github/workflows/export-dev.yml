@@ -7,54 +7,17 @@ jobs:
   export-solution:
     runs-on: windows-latest
     steps:
+    - uses: actions/checkout@v3
 
-    - name: Download and Extract PAC CLI
-      shell: powershell
-      run: |
-        $zipUrl = "https://aka.ms/PowerAppsCLI-Win64"
-        $dest = "$env:TEMP\paccli.zip"
-        $outDir = "$env:TEMP\pac"
-        $attempts = 0
-        do {
-          $attempts++
-          Invoke-WebRequest -Uri $zipUrl -OutFile $dest -UseBasicParsing
-          try {
-            Expand-Archive -Path $dest -DestinationPath $outDir -Force
-            $success = $true
-          } catch {
-            Write-Host "Extraction failed. Retrying... ($attempts)"
-            $success = $false
-            Start-Sleep -Seconds 3
-          }
-        } until ($success -or $attempts -ge 3)
-
-        if (-not $success) {
-          throw "PAC CLI download or extraction failed after 3 attempts"
-        }
-
-    - name: Authenticate to Dev Environment
-      shell: powershell
-      run: |
-        $clientId = "${{ secrets.CLIENT_ID }}"
-        $clientSecret = "${{ secrets.CLIENT_SECRET }}"
-        $tenantId = "${{ secrets.TENANT_ID }}"
-        $envUrl = "${{ secrets.DEV_ENV_URL }}"
-        $pac = "$env:TEMP\pac\pac.exe"
-        & $pac auth create `
-          --url $envUrl `
-          --clientId $clientId `
-          --clientSecret $clientSecret `
-          --tenant $tenantId `
-          --kind AAD
+    - name: Install Power Platform CLI
+      uses: microsoft/powerplatform-actions/actions-install@v1
 
     - name: Export solution from Dev
-      shell: powershell
-      run: |
-        $solution = "D365LightQuotingSystem"
-        $pac = "$env:TEMP\pac\pac.exe"
-        & $pac solution export `
-          --name $solution `
-          --outputFile "solution.zip" `
-          --managed false `
-          --overwrite
-
+      uses: microsoft/powerplatform-actions/export-solution@v1
+      with:
+        environment-url: ${{ secrets.DEV_ENV_URL }}
+        client-id: ${{ secrets.CLIENT_ID }}
+        client-secret: ${{ secrets.CLIENT_SECRET }}
+        tenant-id: ${{ secrets.TENANT_ID }}
+        solution-name: D365LightQuotingSystem
+        solution-output-file: solution.zip
