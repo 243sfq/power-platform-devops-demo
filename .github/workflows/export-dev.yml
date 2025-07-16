@@ -9,17 +9,30 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install Power Platform CLI
-      uses: microsoft/powerplatform-actions/actions-install@v1
+    - name: Install Power Platform CLI via Winget
+      shell: powershell
+      run: |
+        winget install --id Microsoft.PowerApps.CLI -e --accept-package-agreements --accept-source-agreements
+
+    - name: Authenticate to Dev
+      shell: powershell
+      run: |
+        $clientId = "${{ secrets.CLIENT_ID }}"
+        $clientSecret = "${{ secrets.CLIENT_SECRET }}"
+        $tenantId = "${{ secrets.TENANT_ID }}"
+        $envUrl = "${{ secrets.DEV_ENV_URL }}"
+        pac auth create `
+          --url $envUrl `
+          --clientId $clientId `
+          --clientSecret $clientSecret `
+          --tenant $tenantId `
+          --kind AAD
 
     - name: Export solution from Dev
-      uses: microsoft/powerplatform-actions/export-solution@main
-      with:
-        environment-url: ${{ secrets.DEV_ENV_URL }}
-        app-id: ${{ secrets.CLIENT_ID }}
-        password-secret: ${{ secrets.CLIENT_SECRET }}
-        tenant-id: ${{ secrets.TENANT_ID }}
-        solution-name: D365LightQuotingSystem
-        solution-output-file: solution.zip
-        auth-type: 'spn'
-
+      shell: powershell
+      run: |
+        pac solution export `
+          --name D365LightQuotingSystem `
+          --outputFile solution.zip `
+          --managed false `
+          --overwrite
