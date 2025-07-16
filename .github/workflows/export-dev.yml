@@ -9,10 +9,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install Power Platform CLI via Winget
+    - name: Download and Install PAC CLI (MSI)
       shell: powershell
       run: |
-        winget install --id Microsoft.PowerApps.CLI -e --accept-package-agreements --accept-source-agreements
+        $msiPath = "$env:TEMP\pac.msi"
+        Invoke-WebRequest -Uri "https://aka.ms/PowerAppsCLISetup" -OutFile $msiPath
+        Start-Process msiexec.exe -Wait -ArgumentList "/i `"$msiPath`" /quiet /norestart"
 
     - name: Authenticate to Dev
       shell: powershell
