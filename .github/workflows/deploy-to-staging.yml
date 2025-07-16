@@ -1,0 +1,38 @@
+name: Deploy to Staging
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Install PAC CLI via MSI
+      run: |
+        Invoke-WebRequest -Uri "https://aka.ms/pac-msi" -OutFile "pacsetup.msi"
+        Start-Process msiexec.exe -Wait -ArgumentList '/I pacsetup.msi /quiet /norestart'
+        echo "C:\Program Files (x86)\Microsoft Power Platform CLI" | Out-File -FilePath $env:GITHUB_PATH -Append
+      shell: pwsh
+
+    - name: Authenticate to Staging
+      run: |
+        pac auth clear
+        pac auth create `
+          --applicationId "${{ secrets.CLIENT_ID }}" `
+          --clientSecret "${{ secrets.CLIENT_SECRET }}" `
+          --tenant "${{ secrets.TENANT_ID }}" `
+          --environment "${{ secrets.STAGING_ENV_URL }}"
+      shell: pwsh
+
+    - name: Import solution to Staging
+      run: |
+        pac solution import `
+          --path exported/D365LightQuotingSystem.zip `
+          --environment "${{ secrets.STAGING_ENV_URL }}" `
+          --force-overwrite `
+          --publish-changes
+      shell: pwsh
