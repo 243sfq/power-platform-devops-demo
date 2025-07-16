@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{b08c1951-1020-45b7-ae89-13d4e28cf8b9}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="rt_samplestatuschanges1" select="1" icon="1" preview="1">
+        <row name="result" id="rt_samplestatuschangesid">
+          <cell name="rt_samplestatuschanges1" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="rt_samplestatuschanges">
+          <attribute name="rt_samplestatuschangesid" />
+          <attribute name="rt_samplestatuschanges1" />
+          <attribute name="createdon" />
+          <order attribute="rt_samplestatuschanges1" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="1" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Inactive Sample Status Changeses" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

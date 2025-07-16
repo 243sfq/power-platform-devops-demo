@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{1c0b137c-11a3-4b71-9f05-3357b0c0758e}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{8b56e999-0b69-4359-8d72-7e7693e64f06}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="50%">
+              <sections>
+                <section showlabel="true" showbar="false" IsUserDefined="0" id="{16061804-1bd8-4c3b-9a88-0bb34590a1c0}" name="Test Details" columns="11">
+                  <labels>
+                    <label description="Test Details" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{478420d3-d70a-4838-a2ac-a696c9ed6463}" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Test ID" languagecode="1033" />
+                        </labels>
+                        <control id="rt_testid" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="rt_testid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b96e1145-fe2c-49da-bc38-05c8c9aad561}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Sample" languagecode="1033" />
+                        </labels>
+                        <control id="rt_sample" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="rt_sample" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{a4d0deee-c812-4580-981a-07bef5cdfc58}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0a060b71-b4ee-4cf0-ba71-09ed8304c8d5}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Related Quote Lite" languagecode="1033" />
+                        </labels>
+                        <control id="rt_relatedquotelite" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="rt_relatedquotelite" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{ee422797-5ba3-4734-9f2f-2fab47b1759f}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6384d6b7-e9fd-4481-b04e-cbc7ac75e09c}" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Test Status" languagecode="1033" />
+                        </labels>
+                        <control id="rt_teststatus" classid="{3ef39988-22bb-4f0b-bbbe-64b5a3748aee}" datafieldname="rt_teststatus" />
+                      </cell>
+                      <cell locklevel="0" id="{f5055db5-5b60-4735-b459-737795293dd8}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6fae8593-a404-4af8-8a2f-59bd5f6d98f5}">
+                        <labels>
+                          <label description="Test Date" languagecode="1033" />
+                        </labels>
+                        <control id="rt_testdate" classid="{5b773807-9fb2-42db-97c3-7a91eff8adff}" datafieldname="rt_testdate" />
+                      </cell>
+                      <cell locklevel="0" id="{ebb936d9-9bc2-4fce-bab6-55bcf6e72149}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{910ea833-2b0d-4983-b547-bfcec22ffcbd}">
+                        <labels>
+                          <label description="Tester Name" languagecode="1033" />
+                        </labels>
+                        <control id="rt_testername" classid="{4273edbd-ac1d-40d3-9fb2-095c621b552d}" datafieldname="rt_testername" />
+                      </cell>
+                      <cell locklevel="0" id="{e43df2df-13f7-4a78-b164-51b986ef345a}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="null_section_3" id="25041515-aa3c-448c-b247-57ca52bced40" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Test Result Entry" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{b3280d91-661b-4196-b60e-81962b9b1043}" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Pass/Fail" languagecode="1033" />
+                        </labels>
+                        <control id="rt_passfail" classid="{3ef39988-22bb-4f0b-bbbe-64b5a3748aee}" datafieldname="rt_passfail" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2d68d30b-a549-4fa3-a1ec-fd397e603da4}" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Test Notes" languagecode="1033" />
+                        </labels>
+                        <control id="rt_testnotes" classid="{e0dece4b-6fc8-4a8f-a065-082708572369}" datafieldname="rt_testnotes" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="null_section_4" id="aacd3af2-2f11-4c97-a8e6-791c1175b0e4" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Attachments" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{c8e3b087-8c3d-440e-9b8c-4855f1471036}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Attachments" languagecode="1033" />
+                        </labels>
+                        <control id="rt_attachments" classid="{0A7FF475-B016-4687-9CE5-042BFDBD6519}" datafieldname="rt_attachments" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="null_section_6" id="d4765d45-766e-4187-98d7-82b753ea0500" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="false">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{e136dacb-22de-465f-a77c-1e1a6e071b03}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{2288cc42-b492-495a-ad34-2f2c8bd04954}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{d45130ee-ada8-46bb-a6ac-2014165c1649}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{d1d9c045-f9c7-4edb-a282-7e2634554ab4}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{d87b6c15-5751-493c-a683-eb1e5aeaf884}" colspan="1" rowspan="1">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{a67308c4-26a4-4975-8776-fae6b4445d4d}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{16cd8a7e-56d7-4f4c-ad68-5dd6dc3f92d7}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{96a75c15-cde9-4d06-b8d8-4a411b3e5224}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{edab21a9-e71e-4d8b-a346-cee48168b63b}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

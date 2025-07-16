@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{db1e1b9a-0323-f011-8c4e-7c1e5265d57e}</formid>
+    <IntroducedVersion>1.0.0.1</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab id="{5f5ea3a0-57c3-49c4-b801-445c118b69b7}" showlabel="false" name="New Tab" labelid="{f47bf241-4cb4-435d-9e80-ce338396f881}">
+          <labels>
+            <label description="New Tab" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="true" columns="1" showbar="false" IsUserDefined="false" labelwidth="130" id="{f2c38284-af44-4039-bde6-e8adc6cb6c84}" name="New Section" labelid="{83564755-e570-4e86-b7a2-f6f6787ac4f5}">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{c3c79d73-9138-4c4f-a8f7-86780727abf5}" labelid="{df977d26-06db-4993-80ff-4565c5b52d31}">
+                        <labels>
+                          <label description="Testing Date" languagecode="1033" />
+                        </labels>
+                        <control id="rt_testingdate" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="rt_testingdate" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{83f4da0b-2384-4221-b248-e5f211c57af6}" labelid="{72efc0e4-a024-4016-985d-783f011a90fe}">
+                        <labels>
+                          <label description="Completion Date" languagecode="1033" />
+                        </labels>
+                        <control id="rt_completiondate" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="rt_completiondate" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6245dce7-d38a-43e1-aece-ffc4c85c6eae}" labelid="{2059714d-e663-447a-8558-bc81bd32b166}">
+                        <labels>
+                          <label description="Current Status" languagecode="1033" />
+                        </labels>
+                        <control id="rt_currentstatus" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="rt_currentstatus" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e3f9c4c7-5229-497a-9fa8-62f9fd2c3c96}" labelid="{e0b5450b-fe60-47ae-946b-ef7363d90aed}">
+                        <labels>
+                          <label description="Assigned Technician" languagecode="1033" />
+                        </labels>
+                        <control id="rt_assignedtechnician" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="rt_assignedtechnician" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8ebb7f7e-6310-42ae-bbb3-dbe6e0aa5fb6}" labelid="{a169b5bc-1f54-41e0-a8a8-55180d447098}">
+                        <labels>
+                          <label description="Sample Name" languagecode="1033" />
+                        </labels>
+                        <control id="rt_samplename" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="rt_samplename" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{26b33705-5bfc-468a-86e8-f0d64e5e67fa}" locklevel="0" colspan="1" rowspan="1" labelid="{7cc539a2-ba9d-4c5a-9e80-109cec22386e}">
+                        <labels>
+                          <label description="Status" languagecode="1033" />
+                        </labels>
+                        <control id="statecode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <DisplayConditions Order="1" FallbackForm="true">
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="View Test Results" languagecode="1033" />
+    </LocalizedNames>
+  </systemform>
+</forms>

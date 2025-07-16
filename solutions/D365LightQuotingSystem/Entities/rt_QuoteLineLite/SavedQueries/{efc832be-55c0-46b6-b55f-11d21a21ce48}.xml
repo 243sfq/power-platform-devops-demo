@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>1</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{efc832be-55c0-46b6-b55f-11d21a21ce48}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="rt_lineitemname" select="1" icon="1" preview="1">
+        <row name="result" id="rt_quotelineliteid">
+          <cell name="rt_lineitemname" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>4</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="rt_quotelinelite">
+          <attribute name="rt_quotelineliteid" />
+          <attribute name="rt_lineitemname" />
+          <attribute name="createdon" />
+          <order attribute="rt_lineitemname" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <filter type="or" isquickfindfields="1">
+            <condition attribute="rt_lineitemname" operator="like" value="{0}" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Quick Find Active Quote Line Lites" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
