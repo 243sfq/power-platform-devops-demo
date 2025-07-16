@@ -1,0 +1,44 @@
+name: Export Power Platform Solution from Dev
+
+on:
+  workflow_dispatch:
+
+jobs:
+  export-solution:
+    runs-on: windows-latest
+    steps:
+
+    - name: Download and Extract PAC CLI
+      run: |
+        $zipUrl = "https://aka.ms/PowerAppsCLI-Win64"
+        $dest = "$env:TEMP\paccli.zip"
+        $outDir = "$env:TEMP\pac"
+        Invoke-WebRequest -Uri $zipUrl -OutFile $dest
+        Expand-Archive -Path $dest -DestinationPath $outDir -Force
+      shell: powershell
+
+    - name: Authenticate to Dev Environment
+      run: |
+        $clientId = "${{ secrets.CLIENT_ID }}"
+        $clientSecret = "${{ secrets.CLIENT_SECRET }}"
+        $tenantId = "${{ secrets.TENANT_ID }}"
+        $envUrl = "${{ secrets.DEV_ENV_URL }}"
+        $pac = "$env:TEMP\pac\pac.exe"
+        & $pac auth create `
+          --url $envUrl `
+          --clientId $clientId `
+          --clientSecret $clientSecret `
+          --tenant $tenantId `
+          --kind AAD
+      shell: powershell
+
+    - name: Export solution from Dev
+      run: |
+        $solution = "D365LightQuotingSystem"
+        $pac = "$env:TEMP\pac\pac.exe"
+        & $pac solution export `
+          --name $solution `
+          --outputFile "solution.zip" `
+          --managed false `
+          --overwrite
+      shell: powershell
