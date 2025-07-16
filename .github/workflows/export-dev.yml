@@ -19,9 +19,24 @@ jobs:
     - name: Authenticate to Dev
       shell: powershell
       run: |
+        $envUrl = '${{ secrets.DEV_ENV_URL }}'
+        $clientId = '${{ secrets.CLIENT_ID }}'
+        $clientSecret = '${{ secrets.CLIENT_SECRET }}'
+        $tenantId = '${{ secrets.TENANT_ID }}'
         $pac = "$env:LOCALAPPDATA\Microsoft\PowerAppsCLI\pac\pac.exe"
         & $pac auth create `
-          --url "${{ secrets.DEV_ENV_URL }}" `
-          --clientId "${{ secrets.CLIENT_ID }}" `
-          --clientSecret "${{ secrets.CLIENT_SECRET }}" `
-          --tenant "${{ secrets.TENANT_ID_
+          --url $envUrl `
+          --clientId $clientId `
+          --clientSecret $clientSecret `
+          --tenant $tenantId `
+          --kind AAD
+
+    - name: Export solution from Dev
+      shell: powershell
+      run: |
+        $pac = "$env:LOCALAPPDATA\Microsoft\PowerAppsCLI\pac\pac.exe"
+        & $pac solution export `
+          --name "D365LightQuotingSystem" `
+          --outputFile "solution.zip" `
+          --managed false `
+          --overwrite
